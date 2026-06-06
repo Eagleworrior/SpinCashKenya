@@ -3,139 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spin Cash Kenya - PRO</title>
+  <title>Spin Cash Kenya - FULL VIP EDITION</title>
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <style>
-    :root { 
-      --gold: #FFD700; --hot-pink: #ff007f; --money-green: #00fc7b; 
-      --cyan: #00ffff; --bg: #0a0a0a; --purple: #8a2be2;
+    :root {
+      --money-green: #00fc7b; --gold: #FFD700; --hot-pink: #ff007f;
+      --cyan: #00ffff; --purple: #8a2be2; --dark-bg: #0a0a0a;
     }
-    
-    body { 
-      font-family: 'Arial Black', sans-serif; background: var(--bg); color: #fff; 
-      margin: 0; padding: 10px; display: flex; justify-content: center; min-height: 100vh;
-    }
-    
-    .app-container { width: 100%; max-width: 450px; }
-    
-    .panel { 
-      background: #1a1a1a; padding: 20px; border-radius: 20px; 
-      border: 2px solid var(--gold); margin-bottom: 20px; 
-      box-shadow: 0 0 15px rgba(255,215,0,0.2); 
-    }
-    
-    .btn { 
-      padding: 15px; border-radius: 50px; font-weight: bold; cursor: pointer; 
-      width: 100%; border: none; text-transform: uppercase; margin: 10px 0; 
-      transition: 0.3s;
-    }
-    
-    .btn:active { transform: scale(0.95); }
-    
-    .slot-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); 
-      gap: 10px; margin-bottom: 20px;
-    }
-    
-    .slot-cell { 
-      padding: 20px; background: #333; border: 2px solid #555; 
-      border-radius: 10px; text-align: center; font-size: 1.5em; 
-    }
-    
-    #jackpotOverlay { 
-      position: fixed; top:0; left:0; width:100%; height:100%; 
-      background: rgba(255,215,0,0.95); z-index: 999; 
-      display: flex; flex-direction: column; align-items: center; 
-      justify-content: center; animation: flash 0.5s infinite; 
-    }
-    
-    @keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    body { font-family: 'Arial Black', Impact, sans-serif; background: radial-gradient(circle at center, #1a0033 0%, #000000 100%); color: #fff; text-align: center; margin: 0; padding: 0; }
     .hidden { display: none !important; }
+    
+    h1 { background: linear-gradient(90deg, var(--gold), var(--hot-pink), var(--cyan)); -webkit-background-clip: text; color: transparent; font-size: 2.5em; margin: 10px 0; }
+    
+    /* INPUTS & BUTTONS */
+    input { width: 90%; padding: 12px; border: 3px dashed var(--purple); border-radius: 10px; background: rgba(0,0,0,0.8); color: var(--cyan); font-weight: bold; margin: 5px; }
+    .btn { width: 90%; padding: 15px; margin: 10px; border-radius: 25px; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+    .btn-login { background: linear-gradient(45deg, var(--purple), var(--hot-pink)); color: #fff; }
+    .btn-action { background: linear-gradient(45deg, #008000, var(--money-green)); color: #fff; }
 
-    /* RESPONSIVE ADJUSTMENTS */
-    @media (max-width: 400px) {
-      .slot-cell { font-size: 1.2em; padding: 15px; }
-      h1 { font-size: 1.5em; }
-    }
+    /* PANELS */
+    .panel { background: rgba(20,20,20,0.95); padding: 20px; border-radius: 20px; border: 2px solid var(--gold); margin: 15px auto; max-width: 450px; }
+    .auth-container { border-color: var(--cyan); box-shadow: 0 0 40px rgba(0, 255, 255, 0.4); }
+    
+    /* GAMES */
+    .wheel-container { border: 5px dotted var(--cyan); padding: 20px; border-radius: 20px; }
+    #wheelCanvas { width: 280px; height: 280px; border: 5px solid var(--purple); border-radius: 50%; }
+    .slot-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; background: #000; padding: 10px; border: 2px solid var(--gold); }
+    .slot-cell { background: #333; padding: 10px; font-size: 1.5em; border: 1px solid #555; }
+    .win-cell { border: 2px solid var(--gold); background: #440; }
   </style>
 </head>
 <body>
 
-  <div id="jackpotOverlay" class="hidden">
-    <h1 style="font-size: 3em; color: red;">JACKPOT!</h1>
-    <h2 style="color: #000;">KSh 50,000 WON!</h2>
+  <div id="authPanel" class="panel auth-container">
+    <h1>SPIN CASH KE</h1>
+    <input type="text" id="regName" placeholder="ENTER NAME">
+    <input type="text" id="regPhone" placeholder="07XX XXX XXX">
+    <input type="password" id="regPass" placeholder="PASSWORD">
+    <button class="btn btn-login" onclick="login()">ENTER CASINO 🚀</button>
   </div>
 
-  <div class="app-container">
-    <div id="appPanel" class="panel">
-      <h1 style="text-align:center;">SPIN CASH KE</h1>
-      <div style="text-align:center; margin-bottom: 15px;">
-        Balance: KSh <span id="bal" style="color:var(--gold);">500</span>
+  <div id="appPanel" class="hidden">
+    <header style="padding: 15px; border-bottom: 2px solid var(--money-green);">
+      <div style="font-size: 1.5em; color: var(--gold);">BALANCE: KSh <span id="accountBalance">500</span></div>
+    </header>
+
+    <div style="display:flex; justify-content:center; gap:5px; margin: 10px;">
+      <button class="btn" onclick="switchView('games')">🎮 GAMES</button>
+      <button class="btn" onclick="switchView('wallet')">💳 WALLET</button>
+      <button class="btn" onclick="switchView('profile')">👤 PROFILE</button>
+    </div>
+
+    <div id="viewGames" class="panel">
+      <div class="wheel-container">
+        <h2>✨ NEON WHEEL ✨</h2>
+        <canvas id="wheelCanvas"></canvas>
+        <button class="btn btn-action" onclick="spinWheel()">SPIN WHEEL</button>
       </div>
-      
-      <div id="slotGrid" class="slot-grid">
-        <div class="slot-cell">🍒</div><div class="slot-cell">💎</div><div class="slot-cell">7️⃣</div>
-      </div>
-      
-      <button class="btn" style="background:var(--money-green);" onclick="spinSlots()">SPIN (20 KSh)</button>
-      <button class="btn" style="background:var(--cyan);" onclick="payWithPaystack()">DEPOSIT KSh 100</button>
+      <div id="slotGrid" class="slot-grid" style="margin-top:20px;">
+        </div>
+      <button class="btn btn-action" onclick="spinSlots()">PULL LEVER</button>
+    </div>
+
+    <div id="viewWallet" class="panel hidden">
+      <h2>💳 WALLET</h2>
+      <input type="number" id="depAmount" placeholder="Amount to Deposit">
+      <button class="btn btn-action" onclick="payWithPaystack()">DEPOSIT</button>
+      <input type="number" id="withAmount" placeholder="Amount to Withdraw">
+      <button class="btn btn-login" onclick="processWithdraw()">WITHDRAW</button>
+    </div>
+
+    <div id="viewProfile" class="panel hidden">
+      <h2>👤 PROFILE</h2>
+      <p>NAME: <span id="proName">Player</span></p>
+      <p>REF LINK: <br><small>https://spincash.ke/ref/07XX</small></p>
+      <button class="btn" onclick="alert('Link Copied!')">COPY LINK</button>
+      <button class="btn" style="background:#555;" onclick="location.reload()">LOGOUT</button>
     </div>
   </div>
 
   <script>
-    // --- TESTING KEYS ---
+    // --- KEYS ---
     const PUBLIC_KEY = 'pk_live_27d2699bf73e5b924f911ce6d2ba876a7657d1bd';
-    const SECRET_KEY = 'sk_live_063bad45c1cba73030a4b8d3a670a4272b32f815';
     let balance = 500;
 
-    // --- PAYSTACK LOGIC ---
+    // --- INIT SLOTS ---
+    const grid = document.getElementById('slotGrid');
+    for(let i=0; i<20; i++) {
+        let div = document.createElement('div'); div.className = 'slot-cell';
+        div.textContent = ["🍒","💎","7️⃣","🍋"][Math.floor(Math.random()*4)];
+        grid.appendChild(div);
+    }
+
+    // --- NAVIGATION ---
+    function login() {
+        document.getElementById('proName').textContent = document.getElementById('regName').value || "Player";
+        document.getElementById('authPanel').classList.add('hidden');
+        document.getElementById('appPanel').classList.remove('hidden');
+    }
+
+    function switchView(view) {
+        document.getElementById('viewGames').classList.toggle('hidden', view !== 'games');
+        document.getElementById('viewWallet').classList.toggle('hidden', view !== 'wallet');
+        document.getElementById('viewProfile').classList.toggle('hidden', view !== 'profile');
+    }
+
+    // --- GAME LOGIC ---
+    function spinWheel() {
+        if(balance < 20) return alert("Low balance!");
+        balance -= 20; updateUI();
+        alert("Wheel Spinning...");
+    }
+
+    function spinSlots() {
+        if(balance < 20) return alert("Low balance!");
+        balance -= 20; updateUI();
+        let cells = document.querySelectorAll('.slot-cell');
+        cells.forEach(c => {
+            c.textContent = ["🍒","💎","7️⃣","🍋"][Math.floor(Math.random()*4)];
+            c.classList.remove('win-cell');
+        });
+        if(Math.random() > 0.8) { balance += 100; alert("Win! +100 KSh"); }
+        updateUI();
+    }
+
+    // --- WALLET ---
     function payWithPaystack() {
+        let amount = parseInt(document.getElementById('depAmount').value);
+        if(!amount) return alert("Enter amount!");
         let handler = PaystackPop.setup({
             key: PUBLIC_KEY,
-            email: 'tester@test.com',
-            amount: 10000, // 100 KES
+            email: 'player@spincash.com',
+            amount: amount * 100,
             currency: 'KES',
-            callback: function(response) {
-                // In testing, updating local balance after reference
-                alert('Payment Success! Reference: ' + response.reference);
-                balance += 100;
-                updateUI();
-            }
+            callback: (res) => { balance += amount; updateUI(); alert("Deposit Successful!"); }
         });
         handler.openIframe();
     }
 
-    // --- GAME LOGIC ---
-    function spinSlots() {
-      if(balance < 20) return alert("Low balance!");
-      balance -= 20; 
-      updateUI();
-      
-      const symbols = ["🍒", "💎", "7️⃣", "🔔", "🍊"];
-      let cells = document.querySelectorAll('.slot-cell');
-      cells.forEach(c => c.textContent = symbols[Math.floor(Math.random()*symbols.length)]);
-      
-      // Random Win Logic
-      if(Math.random() < 0.2) { 
-        balance += 100;
-        alert("Win! +100 KSh");
-      }
-      
-      // Jackpot Logic
-      if(Math.random() < 0.05) { 
-        document.getElementById('jackpotOverlay').classList.remove('hidden');
-        setTimeout(() => { 
-          document.getElementById('jackpotOverlay').classList.add('hidden'); 
-          balance += 50000; 
-          updateUI(); 
-        }, 3000);
-      }
-      updateUI();
+    function processWithdraw() {
+        let amt = parseInt(document.getElementById('withAmount').value);
+        if(balance < amt) return alert("Insufficient funds!");
+        balance -= amt; updateUI();
+        alert("Withdrawal requested: KSh " + amt);
     }
 
-    function updateUI() { 
-      document.getElementById('bal').textContent = balance; 
-    }
+    function updateUI() { document.getElementById('accountBalance').textContent = balance; }
   </script>
 </body>
 </html>
