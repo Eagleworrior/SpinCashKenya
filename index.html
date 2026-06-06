@@ -386,9 +386,9 @@
       
       // Filter indices based on forced outcome
       let possibleIndices = wheelSegments.map((seg, idx) => ({seg, idx}))
-                                         .filter(obj => obj.seg.isWin === forceWin)
-                                         .map(obj => obj.idx);
-                                         
+                                       .filter(obj => obj.seg.isWin === forceWin)
+                                       .map(obj => obj.idx);
+                                       
       let targetIdx = possibleIndices[Math.floor(Math.random() * possibleIndices.length)];
       
       const arc = (Math.PI*2)/wheelSegments.length;
