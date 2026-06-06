@@ -3,199 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spin Cash Kenya - VIP Edition</title>
+  <title>Spin Cash Kenya - VIP HIGH GRAPHIC</title>
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <style>
-    /* DECORATION & COLOR PALETTE */
     :root {
-      --money-green: #00fc7b; --gold: #FFD700; --hot-pink: #ff007f;
-      --cyan: #00ffff; --purple: #8a2be2; --dark-bg: #0a0a0a;
+      --gold: #FFD700; --pink: #ff007f; --cyan: #00ffff;
+      --purple: #8a2be2; --green: #00ff00; --bg: #050505;
+      --panel: #121212;
     }
-
-    body {
-      font-family: 'Arial Black', Impact, sans-serif;
-      background: radial-gradient(circle at center, #1a0033 0%, #000000 100%);
-      color: #fff; text-align: center; margin: 0; padding: 10px;
-    }
-
+    body { font-family: 'Arial Black', sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 0; display: flex; justify-content: center; min-height: 100vh; }
+    .app-container { width: 100%; max-width: 500px; padding: 20px; box-sizing: border-box; }
     .hidden { display: none !important; }
 
-    /* LAYOUT COMPONENTS */
-    .app-container { max-width: 600px; margin: 0 auto; }
-    .panel {
-      background: rgba(20,20,20,0.95); padding: 20px; border-radius: 20px;
-      border: 3px solid var(--gold); margin: 15px 0; box-shadow: 0 0 20px rgba(255,215,0,0.2);
-    }
-
-    /* INPUTS & BUTTONS */
-    input { 
-      width: 100%; padding: 15px; margin: 10px 0; box-sizing: border-box;
-      background: #000; border: 2px solid var(--cyan); border-radius: 10px; color: var(--cyan);
-    }
-    .btn { 
-      width: 100%; padding: 15px; border-radius: 50px; border: none; 
-      font-weight: bold; cursor: pointer; text-transform: uppercase; margin: 5px 0;
-    }
-
-    /* GAMES */
-    .slot-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin: 20px 0; }
-    .slot-cell { padding: 15px; background: #222; border: 1px solid #444; border-radius: 5px; font-size: 1.5em; }
-    #wheelCanvas { width: 250px; height: 250px; border-radius: 50%; border: 5px solid var(--purple); }
-
-    /* MODE TOGGLE */
-    .toggle-container { display: flex; gap: 10px; justify-content: center; margin: 10px 0; }
-    .active-mode { border: 2px solid var(--money-green) !important; color: var(--money-green) !important; }
+    /* HIGH GRAPHIC DECORATIONS */
+    .view-container { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
+    .panel { background: var(--panel); padding: 25px; border-radius: 25px; border: 2px solid #333; margin: 15px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    h1, h2, h3 { text-transform: uppercase; margin: 0 0 15px 0; letter-spacing: 2px; }
+    
+    .btn { padding: 20px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; width: 100%; margin: 10px 0; transition: 0.3s; text-transform: uppercase; }
+    .btn:active { transform: scale(0.95); }
+    
+    /* WHEEL GRAPHICS */
+    #wheelContainer { position: relative; width: 280px; height: 280px; margin: 20px auto; }
+    #wheelCanvas { width: 100%; height: 100%; transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99); }
+    
+    /* SLOT GRAPHICS */
+    .slot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
+    .slot-cell { padding: 20px 10px; background: #000; border: 3px solid #333; border-radius: 10px; font-size: 2em; text-align: center; }
+    
+    /* REFERRAL DASHBOARD */
+    .ref-box { border: 3px dashed var(--gold); padding: 20px; border-radius: 15px; background: rgba(255,215,0,0.1); }
   </style>
 </head>
 <body>
 
-  <div class="app-container">
-    <div id="authPanel" class="panel">
-      <h1 style="color:var(--cyan);">SPIN CASH KE</h1>
-      <input type="text" id="regName" placeholder="Full Name">
-      <input type="text" id="regPhone" placeholder="07XX XXX XXX">
-      <button class="btn" style="background:var(--purple); color:#fff;" onclick="login()">ENTER CASINO</button>
+<div class="app-container">
+    <div id="authView" class="panel">
+        <h1 style="color:var(--cyan);">SPIN CASH KE</h1>
+        <input type="text" id="regName" placeholder="Full Name" style="width:100%; padding:15px; border-radius:10px; background:#222; border:1px solid #444; color:#fff; box-sizing:border-box; margin:10px 0;">
+        <button class="btn" style="background:var(--purple); color:#fff;" onclick="login()">START CASINO</button>
     </div>
 
-    <div id="appPanel" class="hidden">
-      <div class="panel" style="text-align: center;">
-        <h2 style="color:var(--gold);">BALANCE: KSh <span id="balDisplay">500</span></h2>
-        <div class="toggle-container">
-          <button id="btnDemo" class="btn active-mode" onclick="setMode('demo')">DEMO</button>
-          <button id="btnReal" class="btn" onclick="setMode('real')">REAL</button>
+    <div id="dashView" class="hidden">
+        <div class="panel" style="text-align:center;">
+            <h2>WALLET: KSh <span id="balDisplay" style="color:var(--green);">500</span></h2>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                <button class="btn" onclick="showPage('wheelView')">WHEEL</button>
+                <button class="btn" onclick="showPage('slotsView')">SLOTS</button>
+                <button class="btn" onclick="showPage('walletView')">WALLET</button>
+                <button class="btn" onclick="showPage('profileView')">PROFILE</button>
+            </div>
         </div>
-      </div>
-
-      <div style="display:flex; gap:5px;">
-        <button class="btn" style="background:var(--purple);" onclick="switchView('games')">GAMES</button>
-        <button class="btn" style="background:var(--hot-pink);" onclick="switchView('wallet')">WALLET</button>
-        <button class="btn" style="background:var(--cyan);" onclick="switchView('profile')">PROFILE</button>
-      </div>
-
-      <div id="viewGames">
-        <div class="panel">
-          <h2 style="color:var(--purple);">SPIN WHEEL</h2>
-          <canvas id="wheelCanvas"></canvas>
-          <button class="btn" style="background:var(--purple);" onclick="spinWheel()">SPIN (20 KSh)</button>
-        </div>
-        <div class="panel">
-          <h2 style="color:var(--hot-pink);">CASINO SLOTS</h2>
-          <div id="slotGrid" class="slot-grid"></div>
-          <button class="btn" style="background:var(--hot-pink);" onclick="spinSlots()">PULL LEVER (20 KSh)</button>
-        </div>
-      </div>
-
-      <div id="viewWallet" class="panel hidden">
-        <h2 style="color:var(--money-green);">DEPOSIT & WITHDRAW</h2>
-        <input type="number" id="depAmount" placeholder="Deposit Amount (Min 50)">
-        <button class="btn" style="background:var(--money-green);" onclick="payWithPaystack()">DEPOSIT</button>
-        <input type="number" id="withAmount" placeholder="Withdrawal Amount">
-        <button class="btn" style="background:var(--gold);" onclick="withdraw()">WITHDRAW</button>
-      </div>
-
-      <div id="viewProfile" class="panel hidden">
-        <h2 style="color:var(--cyan);">PROFILE</h2>
-        <p>Name: <span id="proName">Player</span></p>
-        <p>Ref: <a href="https://eagleworrior.github.io/SpinCashKenya/" target="_blank">View Link</a></p>
-        <input type="file" id="kycDoc">
-        <button class="btn" style="background:#555;" onclick="alert('Upload Complete')">VERIFY ID</button>
-        <button class="btn" style="background:#000; border:1px solid red;" onclick="location.reload()">LOGOUT</button>
-      </div>
     </div>
-  </div>
 
-  <script>
-    // --- CONFIG ---
+    <div id="wheelView" class="view-container hidden">
+        <div class="panel">
+            <h2 style="color:var(--gold);">NEON WHEEL</h2>
+            <div id="wheelContainer"><canvas id="wheelCanvas" width="280" height="280"></canvas></div>
+            <button class="btn" style="background:var(--gold);" onclick="spinWheel()">SPIN HIGH SPEED</button>
+            <button class="btn" onclick="showPage('dashView')">BACK</button>
+        </div>
+    </div>
+
+    <div id="slotsView" class="view-container hidden">
+        <div class="panel">
+            <h2 style="color:var(--pink);">MEGA SLOTS</h2>
+            <div id="slotGrid" class="slot-grid"></div>
+            <button class="btn" style="background:var(--pink); color:#fff;" onclick="spinSlots()">PULL LEVER</button>
+            <button class="btn" onclick="showPage('dashView')">BACK</button>
+        </div>
+    </div>
+
+    <div id="walletView" class="view-container hidden">
+        <div class="panel">
+            <h2>FINANCE</h2>
+            <input type="number" id="depAmount" placeholder="Amount (Min 50)" style="width:100%; padding:15px; background:#000; color:#fff; border:1px solid #555;">
+            <button class="btn" style="background:var(--green);" onclick="payWithPaystack()">DEPOSIT</button>
+            <button class="btn" onclick="showPage('dashView')">BACK</button>
+        </div>
+    </div>
+
+    <div id="profileView" class="view-container hidden">
+        <div class="panel">
+            <h2>PLAYER PROFILE</h2>
+            <div class="ref-box">
+                <h3 style="color:var(--gold);">REFERRAL DASHBOARD</h3>
+                <p>Invite friends and earn big!</p>
+                <div style="background:#000; padding:10px; border-radius:5px; margin:10px 0; color:var(--cyan); word-break:break-all;">https://eagleworrior.github.io/SpinCashKenya/</div>
+                <button class="btn" style="background:var(--cyan);" onclick="copyRef()">COPY LINK</button>
+            </div>
+            <button class="btn" onclick="showPage('dashView')">BACK</button>
+        </div>
+    </div>
+</div>
+
+<script>
     const PUBLIC_KEY = 'pk_live_27d2699bf73e5b924f911ce6d2ba876a7657d1bd';
-    let state = { mode: 'demo', demoBal: 500, realBal: 0 };
-
-    // --- INIT ---
-    function initSlots() {
-      const grid = document.getElementById('slotGrid');
-      for(let i=0; i<20; i++) {
-        let div = document.createElement('div');
-        div.className = 'slot-cell';
-        div.textContent = ["🍒","💎","7️⃣","🍋","🍇"][Math.floor(Math.random()*5)];
-        grid.appendChild(div);
-      }
-    }
-    initSlots();
-
-    // --- NAVIGATION ---
-    function login() {
-      document.getElementById('proName').textContent = document.getElementById('regName').value || "Player";
-      document.getElementById('authPanel').classList.add('hidden');
-      document.getElementById('appPanel').classList.remove('hidden');
+    let balance = 500;
+    
+    // NAVIGATION
+    function showPage(id) {
+        ['authView', 'dashView', 'wheelView', 'slotsView', 'walletView', 'profileView'].forEach(v => document.getElementById(v).classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
     }
 
-    function switchView(v) {
-      document.getElementById('viewGames').classList.toggle('hidden', v !== 'games');
-      document.getElementById('viewWallet').classList.toggle('hidden', v !== 'wallet');
-      document.getElementById('viewProfile').classList.toggle('hidden', v !== 'profile');
-    }
+    function login() { showPage('dashView'); }
 
-    function setMode(m) {
-      state.mode = m;
-      document.getElementById('btnDemo').className = m === 'demo' ? 'btn active-mode' : 'btn';
-      document.getElementById('btnReal').className = m === 'real' ? 'btn active-mode' : 'btn';
-      if(m === 'real' && state.realBal === 0) payWithPaystack();
-      updateBal();
+    // WHEEL LOGIC
+    const canvas = document.getElementById('wheelCanvas');
+    const ctx = canvas.getContext('2d');
+    function draw() {
+        ctx.fillStyle = "#111"; ctx.fillRect(0,0,280,280);
+        ctx.beginPath(); ctx.arc(140, 140, 130, 0, Math.PI*2); ctx.strokeStyle = "gold"; ctx.lineWidth = 10; ctx.stroke();
     }
+    draw();
 
-    function updateBal() {
-      document.getElementById('balDisplay').textContent = state.mode === 'demo' ? state.demoBal : state.realBal;
-    }
-
-    // --- GAMES ---
     function spinWheel() {
-      let cost = 20;
-      if(state.mode === 'demo' ? state.demoBal < cost : state.realBal < cost) return alert("Low balance!");
-      if(state.mode === 'demo') state.demoBal -= cost; else state.realBal -= cost;
-      updateBal();
-      alert("Wheel Spinning...");
+        if(balance < 5) return alert("Min bet 5");
+        balance -= 5; document.getElementById('balDisplay').textContent = balance;
+        const wheel = document.getElementById('wheelCanvas');
+        wheel.style.transform = `rotate(${3600 + Math.random()*360}deg)`;
+        setTimeout(() => alert("Result: You won 50!"), 4000);
+    }
+
+    // SLOT LOGIC
+    const grid = document.getElementById('slotGrid');
+    for(let i=0; i<16; i++) {
+        let d = document.createElement('div'); d.className = 'slot-cell'; d.textContent = "🎰"; grid.appendChild(d);
     }
 
     function spinSlots() {
-      let cost = 20;
-      if(state.mode === 'demo' ? state.demoBal < cost : state.realBal < cost) return alert("Low balance!");
-      if(state.mode === 'demo') state.demoBal -= cost; else state.realBal -= cost;
-      
-      const cells = document.querySelectorAll('.slot-cell');
-      cells.forEach(c => c.textContent = ["🍒","💎","7️⃣","🍋","🍇"][Math.floor(Math.random()*5)]);
-      
-      if(Math.random() > 0.8) {
-        let win = 100;
-        if(state.mode === 'demo') state.demoBal += win; else state.realBal += win;
-        alert("WIN! +100 KSh");
-      }
-      updateBal();
+        if(balance < 5) return alert("Min bet 5");
+        balance -= 5; document.getElementById('balDisplay').textContent = balance;
+        let count = 0;
+        let int = setInterval(() => {
+            document.querySelectorAll('.slot-cell').forEach(c => c.textContent = ["🍒","💎","7️⃣","🍋","🍇"][Math.floor(Math.random()*5)]);
+            count++;
+            if(count > 15) { clearInterval(int); alert("Done!"); }
+        }, 100);
     }
 
-    // --- PAYSTACK ---
+    // WALLET
     function payWithPaystack() {
-      let amt = parseInt(document.getElementById('depAmount').value) || 50;
-      let handler = PaystackPop.setup({
-        key: PUBLIC_KEY,
-        email: 'user@test.com',
-        amount: amt * 100,
-        currency: 'KES',
-        callback: (res) => {
-          state.realBal += amt;
-          state.mode = 'real';
-          updateBal();
-          alert("Success! Trans: " + res.reference);
-        }
-      });
-      handler.openIframe();
+        let amt = parseInt(document.getElementById('depAmount').value) || 50;
+        if(amt < 50) return alert("Min deposit 50");
+        PaystackPop.setup({
+            key: PUBLIC_KEY, email: 'user@test.com', amount: amt * 100, currency: 'KES',
+            callback: (res) => { balance += amt; document.getElementById('balDisplay').textContent = balance; alert("Deposited!"); }
+        }).openIframe();
     }
 
-    function withdraw() {
-      let amt = parseInt(document.getElementById('withAmount').value);
-      if(state.realBal < amt) return alert("Insufficient Real Funds!");
-      state.realBal -= amt;
-      updateBal();
-      alert("Withdrawal requested for KSh " + amt);
+    function copyRef() {
+        navigator.clipboard.writeText("https://eagleworrior.github.io/SpinCashKenya/");
+        alert("Copied!");
     }
-  </script>
+</script>
 </body>
 </html>
