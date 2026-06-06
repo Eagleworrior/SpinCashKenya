@@ -1,236 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin Cash Kenya - VIP PRO ENGINE</title>
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-    <style>
-        /* COLOR PALETTE & VARIABLES */
-        :root {
-            --bg: #0a0a0a;
-            --gold: #FFD700; --pink: #ff007f; --cyan: #00ffff;
-            --purple: #8a2be2; --green: #00ff00; --red: #ff4500;
-            --panel-bg: #1a1a1a; --text: #ffffff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spin Cash Kenya - VIP Edition</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <style>
+    /* DECORATION & COLOR PALETTE */
+    :root {
+      --money-green: #00fc7b; --gold: #FFD700; --hot-pink: #ff007f;
+      --cyan: #00ffff; --purple: #8a2be2; --dark-bg: #0a0a0a;
+    }
 
-        body { font-family: 'Arial Black', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; display: flex; justify-content: center; min-height: 100vh; }
-        .app-container { width: 100%; max-width: 600px; padding: 20px; box-sizing: border-box; }
-        .hidden { display: none !important; }
+    body {
+      font-family: 'Arial Black', Impact, sans-serif;
+      background: radial-gradient(circle at center, #1a0033 0%, #000000 100%);
+      color: #fff; text-align: center; margin: 0; padding: 10px;
+    }
 
-        /* DECORATED COMPONENTS */
-        .panel { padding: 25px; border-radius: 25px; margin: 15px 0; border: 3px solid transparent; background: var(--panel-bg); }
-        .border-gold { border-color: var(--gold); }
-        .border-pink { border-color: var(--pink); }
-        .border-cyan { border-color: var(--cyan); }
-        .border-purple { border-color: var(--purple); }
+    .hidden { display: none !important; }
 
-        h1, h2 { text-transform: uppercase; margin: 0 0 15px 0; }
-        
-        /* RESPONSIVE INPUTS */
-        input, select { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #444; background: #000; color: #fff; box-sizing: border-box; margin: 10px 0; }
-        
-        .btn { padding: 18px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; width: 100%; text-transform: uppercase; margin: 8px 0; transition: 0.3s; }
-        .btn:active { transform: scale(0.95); }
-        .btn-gold { background: var(--gold); color: #000; }
-        .btn-pink { background: var(--pink); color: #fff; }
-        .btn-cyan { background: var(--cyan); color: #000; }
-        .btn-purple { background: var(--purple); color: #fff; }
-        .btn-green { background: var(--green); color: #000; }
+    /* LAYOUT COMPONENTS */
+    .app-container { max-width: 600px; margin: 0 auto; }
+    .panel {
+      background: rgba(20,20,20,0.95); padding: 20px; border-radius: 20px;
+      border: 3px solid var(--gold); margin: 15px 0; box-shadow: 0 0 20px rgba(255,215,0,0.2);
+    }
 
-        /* GAMES */
-        .wheel-wrap { position: relative; width: 280px; height: 280px; margin: 20px auto; border: 8px solid var(--purple); border-radius: 50%; overflow: hidden; }
-        #wheelCanvas { width: 100%; height: 100%; }
-        .slot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 20px 0; }
-        .slot-cell { padding: 15px; background: #333; border: 2px solid #555; border-radius: 8px; text-align: center; font-size: 1.5em; }
+    /* INPUTS & BUTTONS */
+    input { 
+      width: 100%; padding: 15px; margin: 10px 0; box-sizing: border-box;
+      background: #000; border: 2px solid var(--cyan); border-radius: 10px; color: var(--cyan);
+    }
+    .btn { 
+      width: 100%; padding: 15px; border-radius: 50px; border: none; 
+      font-weight: bold; cursor: pointer; text-transform: uppercase; margin: 5px 0;
+    }
 
-        /* MODES */
-        .mode-indicator { font-size: 1.2em; padding: 10px; border-radius: 50px; text-align: center; margin-bottom: 20px; font-weight: bold; }
-        .demo-mode { border: 2px solid var(--purple); color: var(--purple); }
-        .real-mode { border: 2px solid var(--green); color: var(--green); }
+    /* GAMES */
+    .slot-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin: 20px 0; }
+    .slot-cell { padding: 15px; background: #222; border: 1px solid #444; border-radius: 5px; font-size: 1.5em; }
+    #wheelCanvas { width: 250px; height: 250px; border-radius: 50%; border: 5px solid var(--purple); }
 
-        @media (max-width: 450px) { .slot-grid { grid-template-columns: repeat(4, 1fr); } .slot-cell { font-size: 1.2em; padding: 10px; } }
-    </style>
+    /* MODE TOGGLE */
+    .toggle-container { display: flex; gap: 10px; justify-content: center; margin: 10px 0; }
+    .active-mode { border: 2px solid var(--money-green) !important; color: var(--money-green) !important; }
+  </style>
 </head>
 <body>
 
-<div class="app-container">
-    <div id="authPanel" class="panel border-cyan">
-        <h1 style="color:var(--cyan);">SPIN CASH KE</h1>
-        <input type="text" id="regName" placeholder="Full Name">
-        <input type="text" id="regPhone" placeholder="07XX XXX XXX">
-        <button class="btn btn-cyan" onclick="login()">ENTER CASINO</button>
+  <div class="app-container">
+    <div id="authPanel" class="panel">
+      <h1 style="color:var(--cyan);">SPIN CASH KE</h1>
+      <input type="text" id="regName" placeholder="Full Name">
+      <input type="text" id="regPhone" placeholder="07XX XXX XXX">
+      <button class="btn" style="background:var(--purple); color:#fff;" onclick="login()">ENTER CASINO</button>
     </div>
 
     <div id="appPanel" class="hidden">
-        
-        <div id="modeToggle" class="mode-indicator demo-mode" onclick="toggleMode()">
-            MODE: <span id="modeText">DEMO (KSh 500)</span>
+      <div class="panel" style="text-align: center;">
+        <h2 style="color:var(--gold);">BALANCE: KSh <span id="balDisplay">500</span></h2>
+        <div class="toggle-container">
+          <button id="btnDemo" class="btn active-mode" onclick="setMode('demo')">DEMO</button>
+          <button id="btnReal" class="btn" onclick="setMode('real')">REAL</button>
         </div>
+      </div>
 
-        <div class="panel border-gold" style="text-align: center;">
-            <h2 style="color:var(--gold);">BALANCE</h2>
-            <div id="balDisplay" style="font-size: 2.5em;">500</div>
-        </div>
+      <div style="display:flex; gap:5px;">
+        <button class="btn" style="background:var(--purple);" onclick="switchView('games')">GAMES</button>
+        <button class="btn" style="background:var(--hot-pink);" onclick="switchView('wallet')">WALLET</button>
+        <button class="btn" style="background:var(--cyan);" onclick="switchView('profile')">PROFILE</button>
+      </div>
 
-        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px;">
-            <button class="btn btn-purple" onclick="switchView('games')">GAMES</button>
-            <button class="btn btn-pink" onclick="switchView('wallet')">WALLET</button>
-            <button class="btn btn-cyan" onclick="switchView('profile')">PROFILE</button>
+      <div id="viewGames">
+        <div class="panel">
+          <h2 style="color:var(--purple);">SPIN WHEEL</h2>
+          <canvas id="wheelCanvas"></canvas>
+          <button class="btn" style="background:var(--purple);" onclick="spinWheel()">SPIN (20 KSh)</button>
         </div>
+        <div class="panel">
+          <h2 style="color:var(--hot-pink);">CASINO SLOTS</h2>
+          <div id="slotGrid" class="slot-grid"></div>
+          <button class="btn" style="background:var(--hot-pink);" onclick="spinSlots()">PULL LEVER (20 KSh)</button>
+        </div>
+      </div>
 
-        <div id="viewGames">
-            <div class="panel border-purple">
-                <h2 style="color:var(--purple);">SPIN WHEEL</h2>
-                <div class="wheel-wrap"><canvas id="wheelCanvas"></canvas></div>
-                <button class="btn btn-purple" onclick="spinWheel()">SPIN (5 KSh)</button>
-            </div>
-            <div class="panel border-pink">
-                <h2 style="color:var(--pink);">CASINO MACHINE</h2>
-                <div id="slotGrid" class="slot-grid"></div>
-                <button class="btn btn-pink" onclick="spinSlots()">PULL LEVER (5 KSh)</button>
-            </div>
-        </div>
+      <div id="viewWallet" class="panel hidden">
+        <h2 style="color:var(--money-green);">DEPOSIT & WITHDRAW</h2>
+        <input type="number" id="depAmount" placeholder="Deposit Amount (Min 50)">
+        <button class="btn" style="background:var(--money-green);" onclick="payWithPaystack()">DEPOSIT</button>
+        <input type="number" id="withAmount" placeholder="Withdrawal Amount">
+        <button class="btn" style="background:var(--gold);" onclick="withdraw()">WITHDRAW</button>
+      </div>
 
-        <div id="viewWallet" class="panel border-pink hidden">
-            <h2 style="color:var(--pink);">FINANCE</h2>
-            <input type="number" id="depAmount" placeholder="Min Deposit: 50 KSh">
-            <button class="btn btn-green" onclick="payWithPaystack()">DEPOSIT</button>
-            <input type="number" id="withAmount" placeholder="Withdrawal Amount">
-            <button class="btn btn-gold" onclick="withdraw()">WITHDRAW</button>
-        </div>
-
-        <div id="viewProfile" class="panel border-cyan hidden">
-            <h2 style="color:var(--cyan);">PROFILE</h2>
-            <p>NAME: <span id="proName"></span></p>
-            <p>REF: <a id="refLink" href="#" style="color:var(--cyan);"></a></p>
-            <button class="btn btn-cyan" onclick="copyRef()">COPY REFERRAL</button>
-            <hr>
-            <h3>KYC UPLOAD</h3>
-            <input type="file" id="idUpload">
-            <button class="btn btn-purple" onclick="alert('Document Uploaded for Verification')">VERIFY ID</button>
-        </div>
+      <div id="viewProfile" class="panel hidden">
+        <h2 style="color:var(--cyan);">PROFILE</h2>
+        <p>Name: <span id="proName">Player</span></p>
+        <p>Ref: <a href="https://eagleworrior.github.io/SpinCashKenya/" target="_blank">View Link</a></p>
+        <input type="file" id="kycDoc">
+        <button class="btn" style="background:#555;" onclick="alert('Upload Complete')">VERIFY ID</button>
+        <button class="btn" style="background:#000; border:1px solid red;" onclick="location.reload()">LOGOUT</button>
+      </div>
     </div>
-</div>
+  </div>
 
-<script>
-    // CONFIG
+  <script>
+    // --- CONFIG ---
     const PUBLIC_KEY = 'pk_live_27d2699bf73e5b924f911ce6d2ba876a7657d1bd';
-    let state = {
-        name: '',
-        phone: '',
-        isRealMode: false,
-        demoBal: 500,
-        realBal: 0
-    };
+    let state = { mode: 'demo', demoBal: 500, realBal: 0 };
 
-    // INIT
+    // --- INIT ---
     function initSlots() {
-        const grid = document.getElementById('slotGrid');
-        grid.innerHTML = '';
-        for(let i=0; i<20; i++) {
-            let d = document.createElement('div');
-            d.className = 'slot-cell';
-            d.textContent = ["🍒","💎","7️⃣","🔔","🍋","🍇","🍀"][Math.floor(Math.random()*7)];
-            grid.appendChild(d);
-        }
+      const grid = document.getElementById('slotGrid');
+      for(let i=0; i<20; i++) {
+        let div = document.createElement('div');
+        div.className = 'slot-cell';
+        div.textContent = ["🍒","💎","7️⃣","🍋","🍇"][Math.floor(Math.random()*5)];
+        grid.appendChild(div);
+      }
     }
+    initSlots();
 
+    // --- NAVIGATION ---
     function login() {
-        state.name = document.getElementById('regName').value || "Player";
-        state.phone = document.getElementById('regPhone').value || "0700000000";
-        document.getElementById('proName').textContent = state.name;
-        document.getElementById('refLink').textContent = "https://eagleworrior.github.io/SpinCashKenya/?ref=" + state.phone;
-        document.getElementById('authPanel').classList.add('hidden');
-        document.getElementById('appPanel').classList.remove('hidden');
-        initSlots();
-    }
-
-    // MODE LOGIC
-    function toggleMode() {
-        state.isRealMode = !state.isRealMode;
-        if(state.isRealMode) {
-            document.getElementById('modeToggle').className = 'mode-indicator real-mode';
-            document.getElementById('modeText').textContent = "REAL (KSh " + state.realBal + ")";
-            if(state.realBal === 0) payWithPaystack(); // Auto-open on empty Real
-        } else {
-            document.getElementById('modeToggle').className = 'mode-indicator demo-mode';
-            document.getElementById('modeText').textContent = "DEMO (KSh " + state.demoBal + ")";
-        }
-        updateBal();
-    }
-
-    function updateBal() {
-        document.getElementById('balDisplay').textContent = state.isRealMode ? state.realBal : state.demoBal;
+      document.getElementById('proName').textContent = document.getElementById('regName').value || "Player";
+      document.getElementById('authPanel').classList.add('hidden');
+      document.getElementById('appPanel').classList.remove('hidden');
     }
 
     function switchView(v) {
-        document.getElementById('viewGames').classList.toggle('hidden', v !== 'games');
-        document.getElementById('viewWallet').classList.toggle('hidden', v !== 'wallet');
-        document.getElementById('viewProfile').classList.toggle('hidden', v !== 'profile');
+      document.getElementById('viewGames').classList.toggle('hidden', v !== 'games');
+      document.getElementById('viewWallet').classList.toggle('hidden', v !== 'wallet');
+      document.getElementById('viewProfile').classList.toggle('hidden', v !== 'profile');
     }
 
-    // GAME LOGIC
-    function spinSlots() {
-        let cost = 5;
-        if(state.isRealMode ? state.realBal < cost : state.demoBal < cost) return alert("Low balance!");
-        
-        if(state.isRealMode) state.realBal -= cost; else state.demoBal -= cost;
-        updateBal();
-
-        const cells = document.querySelectorAll('.slot-cell');
-        cells.forEach(c => c.textContent = ["🍒","💎","7️⃣","🔔","🍋","🍇","🍀"][Math.floor(Math.random()*7)]);
-        
-        if(Math.random() > 0.8) {
-            let win = 50;
-            if(state.isRealMode) state.realBal += win; else state.demoBal += win;
-            alert("WINNER! +"+win+" KSh");
-            updateBal();
-        }
+    function setMode(m) {
+      state.mode = m;
+      document.getElementById('btnDemo').className = m === 'demo' ? 'btn active-mode' : 'btn';
+      document.getElementById('btnReal').className = m === 'real' ? 'btn active-mode' : 'btn';
+      if(m === 'real' && state.realBal === 0) payWithPaystack();
+      updateBal();
     }
 
+    function updateBal() {
+      document.getElementById('balDisplay').textContent = state.mode === 'demo' ? state.demoBal : state.realBal;
+    }
+
+    // --- GAMES ---
     function spinWheel() {
-        let cost = 5;
-        if(state.isRealMode ? state.realBal < cost : state.demoBal < cost) return alert("Low balance!");
-        if(state.isRealMode) state.realBal -= cost; else state.demoBal -= cost;
-        alert("Wheel spinning...");
-        updateBal();
+      let cost = 20;
+      if(state.mode === 'demo' ? state.demoBal < cost : state.realBal < cost) return alert("Low balance!");
+      if(state.mode === 'demo') state.demoBal -= cost; else state.realBal -= cost;
+      updateBal();
+      alert("Wheel Spinning...");
     }
 
-    // WALLET
+    function spinSlots() {
+      let cost = 20;
+      if(state.mode === 'demo' ? state.demoBal < cost : state.realBal < cost) return alert("Low balance!");
+      if(state.mode === 'demo') state.demoBal -= cost; else state.realBal -= cost;
+      
+      const cells = document.querySelectorAll('.slot-cell');
+      cells.forEach(c => c.textContent = ["🍒","💎","7️⃣","🍋","🍇"][Math.floor(Math.random()*5)]);
+      
+      if(Math.random() > 0.8) {
+        let win = 100;
+        if(state.mode === 'demo') state.demoBal += win; else state.realBal += win;
+        alert("WIN! +100 KSh");
+      }
+      updateBal();
+    }
+
+    // --- PAYSTACK ---
     function payWithPaystack() {
-        let amt = parseInt(document.getElementById('depAmount').value) || 50;
-        let handler = PaystackPop.setup({
-            key: PUBLIC_KEY,
-            email: state.phone + '@user.com',
-            amount: amt * 100,
-            currency: 'KES',
-            callback: (res) => {
-                state.realBal += amt;
-                state.isRealMode = true;
-                updateBal();
-                alert("Deposit Success!");
-            }
-        });
-        handler.openIframe();
+      let amt = parseInt(document.getElementById('depAmount').value) || 50;
+      let handler = PaystackPop.setup({
+        key: PUBLIC_KEY,
+        email: 'user@test.com',
+        amount: amt * 100,
+        currency: 'KES',
+        callback: (res) => {
+          state.realBal += amt;
+          state.mode = 'real';
+          updateBal();
+          alert("Success! Trans: " + res.reference);
+        }
+      });
+      handler.openIframe();
     }
 
     function withdraw() {
-        let amt = parseInt(document.getElementById('withAmount').value);
-        if(!amt) return alert("Enter amount");
-        let balance = state.isRealMode ? state.realBal : state.demoBal;
-        if(amt > balance) return alert("Insufficient!");
-        
-        if(state.isRealMode) state.realBal -= amt; else state.demoBal -= amt;
-        alert("Withdrawal of " + amt + " KSh initiated for " + state.phone);
-        updateBal();
+      let amt = parseInt(document.getElementById('withAmount').value);
+      if(state.realBal < amt) return alert("Insufficient Real Funds!");
+      state.realBal -= amt;
+      updateBal();
+      alert("Withdrawal requested for KSh " + amt);
     }
-
-    function copyRef() {
-        navigator.clipboard.writeText(document.getElementById('refLink').textContent);
-        alert("Link Copied!");
-    }
-
-</script>
+  </script>
 </body>
 </html>
