@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spin Cash Kenya</title>
+  <title>Spin Cash Kenya - VIP Edition</title>
   <style>
-    /* BRAND COLORS: SPIN CASH KENYA */
+    /* EXTREME DECORATION & COLOR PALETTE */
     :root {
-      --money-green: #00B365;
+      --money-green: #00fc7b;
       --gold: #FFD700;
-      --dark-charcoal: #121212;
-      --panel-bg: #1e1e1e;
-      --text-light: #f5f5f5;
-      --danger: #ff4444;
+      --hot-pink: #ff007f;
+      --cyan: #00ffff;
+      --purple: #8a2be2;
+      --dark-bg: #0a0a0a;
     }
 
     body {
-      font-family: 'Roboto', 'Arial', sans-serif;
-      background-color: var(--dark-charcoal);
-      color: var(--text-light);
+      font-family: 'Arial Black', Impact, sans-serif;
+      background: radial-gradient(circle at center, #1a0033 0%, #000000 100%);
+      color: #fff;
       text-align: center;
       margin: 0;
       padding: 0;
@@ -27,197 +27,241 @@
 
     .hidden { display: none !important; }
 
-    /* TYPOGRAPHY */
-    h1, h2, h3 { font-family: 'Arial Black', Impact, sans-serif; text-transform: uppercase; margin-bottom: 10px; }
-    h1 { color: var(--gold); font-size: 2.2em; letter-spacing: 1px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-    h2 { color: var(--text-light); font-size: 1.5em; }
-    
-    /* AUTHENTICATION PANEL */
-    .auth-container {
-      max-width: 400px;
-      margin: 60px auto;
-      background: var(--panel-bg);
-      padding: 30px;
-      border-radius: 12px;
-      border-top: 5px solid var(--money-green);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    /* HEAVILY DECORATED TEXT */
+    h1 {
+      background: linear-gradient(90deg, var(--gold), var(--hot-pink), var(--cyan));
+      -webkit-background-clip: text; color: transparent;
+      text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+      font-size: 2.5em; margin-bottom: 5px;
     }
-    .form-group { margin-bottom: 15px; text-align: left; }
-    label { color: #aaa; font-size: 0.9em; font-weight: bold; display: block; margin-bottom: 5px; }
+    h2 { color: var(--money-green); text-shadow: 0 0 10px var(--money-green); }
+    h3 { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+    p, label { color: #ffccff; text-shadow: 0 0 5px #ffccff; font-family: Arial, sans-serif; font-weight: bold; }
+
+    /* DECORATED INPUTS WITH DIFFERENT COLORS */
     input {
-      width: 100%; padding: 12px; box-sizing: border-box; background: #2a2a2a;
-      border: 1px solid #444; border-radius: 6px; color: white;
-      font-size: 1.1em;
+      width: 100%; padding: 12px; box-sizing: border-box; 
+      background: rgba(0, 0, 0, 0.8);
+      border: 3px dashed var(--purple); border-radius: 10px;
+      font-size: 1.2em; font-weight: bold; font-family: 'Courier New', Courier, monospace;
+      margin-top: 5px; box-shadow: inset 0 0 10px var(--purple);
     }
-    input:focus { outline: none; border-color: var(--money-green); }
+    input:focus { outline: none; border-style: solid; }
+    
+    /* Input typed-text colors */
+    input[type="text"] { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); border-color: var(--cyan); box-shadow: inset 0 0 10px var(--cyan); }
+    input[type="password"] { color: var(--hot-pink); text-shadow: 0 0 8px var(--hot-pink); border-color: var(--hot-pink); box-shadow: inset 0 0 10px var(--hot-pink); }
+    input[type="number"] { color: var(--gold); text-shadow: 0 0 8px var(--gold); border-color: var(--gold); box-shadow: inset 0 0 10px var(--gold); text-align: center; }
 
+    /* MULTI-COLOR BUTTONS */
     .btn {
-      width: 100%; padding: 14px; color: #000; border: none; border-radius: 6px; 
+      width: 100%; padding: 15px; color: #fff; border: 2px solid #fff; border-radius: 25px; 
       font-size: 1.2em; font-weight: bold; cursor: pointer; text-transform: uppercase; 
-      transition: transform 0.1s, filter 0.2s; margin-top: 10px;
+      transition: 0.2s; margin-top: 15px; text-shadow: 1px 1px 2px #000;
     }
-    .btn:active { transform: scale(0.98); }
-    .btn:hover { filter: brightness(1.1); }
+    .btn:active { transform: scale(0.95); }
     
-    .btn-demo { background: var(--gold); }
-    .btn-real { background: var(--money-green); color: white; }
-    .btn-action { background: linear-gradient(to right, #00B365, #009955); color: white; box-shadow: 0 4px 15px rgba(0, 179, 101, 0.4); }
+    .btn-login { background: linear-gradient(45deg, var(--purple), var(--hot-pink)); box-shadow: 0 0 15px var(--hot-pink); }
+    .btn-action { background: linear-gradient(45deg, #008000, var(--money-green)); box-shadow: 0 0 15px var(--money-green); }
+    .btn-copy { background: linear-gradient(45deg, #0000ff, var(--cyan)); box-shadow: 0 0 15px var(--cyan); }
 
-    /* MAIN DASHBOARD */
-    .app-header {
-      background: #000; padding: 15px 20px; display: flex;
-      justify-content: space-between; align-items: center; border-bottom: 3px solid var(--gold);
-    }
-    .header-logo { margin: 0; font-size: 1.5em; color: var(--money-green); }
-    .header-logo span { color: var(--gold); }
-    
-    .balance-badge {
-      font-size: 1.3em; color: var(--gold); font-weight: bold;
-      border: 1px solid var(--gold); padding: 8px 15px; border-radius: 20px; background: rgba(255, 215, 0, 0.1);
-    }
-    .mode-badge { font-size: 0.9em; padding: 4px 10px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
-    .mode-demo { background: var(--gold); color: #000; }
-    .mode-real { background: var(--money-green); color: #fff; }
-
-    .game-tabs { margin: 20px auto; display: flex; justify-content: center; gap: 10px; padding: 0 10px; }
-    .tab-btn {
-      padding: 12px 20px; background: #333; color: #fff; border: none;
-      font-size: 1em; font-weight: bold; border-radius: 8px; cursor: pointer; flex: 1; max-width: 200px;
-    }
-    .tab-btn.active { background: var(--money-green); color: #fff; }
-
+    /* PANELS AND BACKGROUND DECORATIONS */
     .panel {
-      background: var(--panel-bg); padding: 25px; border-radius: 12px;
-      margin: 15px auto; max-width: 800px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      background: linear-gradient(135deg, rgba(20,20,20,0.95) 0%, rgba(40,0,40,0.95) 100%);
+      padding: 25px; border-radius: 20px; border: 4px solid var(--gold);
+      margin: 15px auto; max-width: 800px; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+    }
+    
+    .auth-container { max-width: 450px; margin: 40px auto; border-color: var(--cyan); box-shadow: 0 0 40px rgba(0, 255, 255, 0.4); }
+
+    /* MAIN HEADER & MODE TOGGLE */
+    .app-header {
+      background: linear-gradient(to bottom, #222, #000); padding: 15px; display: flex;
+      justify-content: space-between; align-items: center; border-bottom: 5px solid var(--money-green);
+      box-shadow: 0 5px 20px rgba(0, 252, 123, 0.3);
+    }
+    .balance-box {
+      font-size: 1.4em; color: var(--gold); text-shadow: 0 0 10px var(--gold);
+      border: 2px dashed var(--gold); padding: 5px 15px; border-radius: 15px; background: #000;
     }
 
-    /* M-PESA UI */
-    .mpesa-box { border-left: 5px solid var(--money-green); text-align: center; }
-    .mpesa-box input { width: 120px; display: inline-block; text-align: center; margin-right: 10px; }
-    .mpesa-box .btn { width: auto; padding: 12px 25px; display: inline-block; margin: 0; }
+    .toggle-container { display: flex; align-items: center; gap: 10px; background: #111; padding: 5px; border-radius: 30px; border: 2px solid #555; }
+    .toggle-btn { padding: 8px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.9em; border: none; background: transparent; color: #888; }
+    .toggle-btn.active-demo { background: var(--cyan); color: #000; box-shadow: 0 0 10px var(--cyan); }
+    .toggle-btn.active-real { background: var(--money-green); color: #000; box-shadow: 0 0 10px var(--money-green); }
 
-    /* WHEEL UI */
-    .wheel-outer { position: relative; width: 340px; height: 340px; margin: 30px auto; }
+    /* TAB NAVIGATION */
+    .nav-tabs { display: flex; justify-content: center; gap: 5px; margin: 20px 5px; flex-wrap: wrap; }
+    .nav-tab {
+      padding: 12px 25px; background: #222; color: var(--hot-pink); border: 2px solid var(--hot-pink);
+      font-size: 1.1em; font-weight: bold; border-radius: 12px; cursor: pointer; text-shadow: 0 0 5px var(--hot-pink);
+    }
+    .nav-tab.active { background: var(--hot-pink); color: #fff; box-shadow: 0 0 20px var(--hot-pink); text-shadow: none; }
+
+    /* DECORATED WHEEL */
+    .wheel-container {
+      background: radial-gradient(circle, #330033 0%, #000 70%);
+      border: 5px dotted var(--cyan); border-radius: 20px; padding: 20px;
+      box-shadow: 0 0 30px var(--cyan), inset 0 0 30px var(--cyan); margin-bottom: 20px;
+    }
+    .wheel-outer { position: relative; width: 320px; height: 320px; margin: 20px auto; }
     .wheel-pointer {
-      position: absolute; top: -25px; left: 50%; transform: translateX(-50%);
+      position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
       width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent;
-      border-top: 35px solid var(--gold); z-index: 10; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
+      border-top: 40px solid var(--gold); z-index: 10; filter: drop-shadow(0 0 15px var(--gold));
     }
-    #wheelCanvas { width: 340px; height: 340px; border-radius: 50%; border: 6px solid #333; box-shadow: 0 0 25px rgba(0, 0, 0, 0.8); }
+    #wheelCanvas { width: 320px; height: 320px; border-radius: 50%; border: 8px solid var(--purple); box-shadow: 0 0 20px var(--hot-pink); }
 
-    /* 5x4 SLOT MACHINE UI */
+    /* DECORATED 5x4 SLOTS */
     .slot-machine-box {
-      background: #0a0a0a; border: 4px solid #333; border-radius: 12px;
-      padding: 15px; margin: 20px auto;
+      background: radial-gradient(circle, #003300 0%, #000 80%);
+      border: 6px double var(--gold); border-radius: 15px;
+      padding: 20px; margin: 20px auto; box-shadow: 0 0 40px var(--gold), inset 0 0 20px var(--money-green);
     }
     .slot-grid {
       display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(4, 1fr);
-      gap: 8px; background: #111; padding: 10px; border-radius: 8px;
+      gap: 10px; background: rgba(0,0,0,0.8); padding: 15px; border-radius: 10px; border: 2px solid var(--money-green);
     }
     .slot-cell {
-      background: #222; border: 1px solid #444; border-radius: 6px;
+      background: linear-gradient(180deg, #333 0%, #111 100%);
+      border: 2px dashed var(--cyan); border-radius: 8px;
       font-size: 2.5em; display: flex; align-items: center; justify-content: center;
-      height: 70px; transition: all 0.2s;
+      height: 60px; text-shadow: 0 0 10px rgba(255,255,255,0.8);
     }
     .win-cell {
-      background: var(--money-green); border-color: var(--gold); box-shadow: 0 0 15px var(--money-green);
-      transform: scale(1.05); z-index: 2;
+      background: linear-gradient(180deg, var(--gold) 0%, #ff8800 100%); border-color: #fff;
+      box-shadow: 0 0 25px var(--gold); transform: scale(1.1); z-index: 2; animation: blink 0.5s infinite;
     }
 
-    .bet-control { margin: 20px 0; }
-    .bet-control input { width: 120px; text-align: center; font-size: 1.2em; display: inline-block; }
+    @keyframes blink { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.5); } }
 
-    #gameOutput { font-size: 1.5em; font-weight: bold; margin: 20px; min-height: 40px; }
-    .text-win { color: var(--money-green); text-shadow: 0 0 10px rgba(0, 179, 101, 0.5); }
-    .text-lose { color: var(--danger); }
+    .game-output { font-size: 1.8em; margin: 15px; min-height: 40px; }
+    
+    /* DASHBOARDS (PROFILE & WALLET) */
+    .dashboard-item {
+      background: rgba(0,0,0,0.6); border: 2px solid var(--purple); border-radius: 10px;
+      padding: 15px; margin-bottom: 15px; text-align: left;
+    }
+    .ref-link { color: var(--gold); font-size: 1.1em; word-break: break-all; margin: 10px 0; text-shadow: 0 0 5px var(--gold); }
   </style>
 </head>
 <body>
 
-  <!-- AUTH / MODE SELECTION PANEL -->
-  <div id="authPanel" class="auth-container">
-    <h1 style="color:var(--money-green);">SPIN CASH <span style="color:var(--gold);">KENYA</span></h1>
-    <p style="color:#aaa; margin-top:-10px; margin-bottom:25px;">Real-Time Spin & Bet Platform</p>
-    
-    <div id="registerForm">
-      <div class="form-group"><label>Full Name</label><input type="text" id="regName" placeholder="Your Name"></div>
-      <div class="form-group"><label>M-Pesa Number</label><input type="text" id="regPhone" placeholder="0712345678"></div>
-      <div class="form-group"><label>Password</label><input type="password" id="regPass" placeholder="••••••••"></div>
-      
-      <div style="margin-top: 25px;">
-        <button class="btn btn-demo" onclick="handleAuth('demo')">🎮 Play Demo (KSh 500)</button>
-        <button class="btn btn-real" onclick="handleAuth('real')">💰 Play Real (Deposit)</button>
-      </div>
-    </div>
+  <!-- 1. LOGIN / REGISTER -->
+  <div id="authPanel" class="panel auth-container">
+    <h1>SPIN CASH KE</h1>
+    <h2 style="color:var(--hot-pink);">VIP ACCESS</h2>
+    <div class="form-group"><label>FULL NAME</label><input type="text" id="regName" placeholder="ENTER NAME"></div>
+    <div class="form-group"><label>M-PESA NUMBER</label><input type="text" id="regPhone" placeholder="07XX XXX XXX"></div>
+    <div class="form-group"><label>PASSWORD</label><input type="password" id="regPass" placeholder="••••••••"></div>
+    <button class="btn btn-login" onclick="login()">ENTER CASINO 🚀</button>
   </div>
 
-  <!-- MAIN APP PANEL -->
+  <!-- 2. MAIN APP -->
   <div id="appPanel" class="hidden">
+    
+    <!-- HEADER WITH DEMO/REAL TOGGLE -->
     <header class="app-header">
-      <h1 class="header-logo">SPIN CASH <span>KE</span></h1>
-      <div style="display: flex; gap: 15px; align-items: center;">
-        <span id="displayMode" class="mode-badge mode-demo">DEMO</span>
-        <div class="balance-badge">KSh <span id="accountBalance">0</span></div>
-        <button onclick="location.reload()" style="background:transparent; border:none; color:#aaa; font-weight:bold; cursor:pointer;">EXIT</button>
+      <div class="toggle-container">
+        <button id="btnDemo" class="toggle-btn active-demo" onclick="setMode('demo')">DEMO</button>
+        <button id="btnReal" class="toggle-btn" onclick="setMode('real')">REAL</button>
       </div>
+      <div class="balance-box">KSh <span id="accountBalance">500</span></div>
     </header>
 
-    <div class="game-tabs">
-      <button class="tab-btn active" id="tabWheel" onclick="switchGame('wheel')">WHEEL</button>
-      <button class="tab-btn" id="tabSlots" onclick="switchGame('slots')">FRUIT SLOTS</button>
+    <!-- NAVIGATION TABS -->
+    <div class="nav-tabs">
+      <button class="nav-tab active" id="tabGames" onclick="switchView('games')">🎮 GAMES</button>
+      <button class="nav-tab" id="tabWallet" onclick="switchView('wallet')">💳 WALLET</button>
+      <button class="nav-tab" id="tabProfile" onclick="switchView('profile')">👤 PROFILE</button>
     </div>
 
-    <!-- M-PESA SIMULATOR -->
-    <div id="mpesaSection" class="panel mpesa-box hidden">
-      <h3 style="color: var(--money-green); margin-top:0;">M-PESA DEPOSIT</h3>
-      <div style="display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:10px;">
-        <input type="number" id="depositAmount" value="250" min="50">
-        <button class="btn btn-action" onclick="triggerMpesa()">SEND TO M-PESA</button>
+    <!-- VIEW: GAMES -->
+    <div id="viewGames">
+      <div style="display:flex; justify-content:center; gap:10px; margin-bottom: 15px;">
+        <button class="btn" style="width:45%; margin:0; background:var(--purple);" onclick="toggleGame('wheel')">WHEEL</button>
+        <button class="btn" style="width:45%; margin:0; background:var(--cyan); color:#000;" onclick="toggleGame('slots')">SLOTS</button>
       </div>
-      <p id="depositStatus" style="color:var(--gold); font-weight:bold; margin-top:10px;"></p>
-    </div>
 
-    <!-- GAME 1: HIGH SPEED WHEEL -->
-    <div id="gameWheelSection" class="panel">
-      <h2>CASH WHEEL MULTIPLIER</h2>
-      <div class="wheel-outer">
-        <div class="wheel-pointer"></div>
-        <canvas id="wheelCanvas" width="340" height="340"></canvas>
-      </div>
-      <div class="bet-control">
-        <label>BET AMOUNT (KSh)</label><br>
-        <input type="number" id="wheelBet" value="20" min="5">
-      </div>
-      <button class="btn btn-action" id="wheelSpinBtn" style="max-width:300px;" onclick="spinWheel()">SPIN WHEEL</button>
-    </div>
-
-    <!-- GAME 2: 5x4 SLOTS -->
-    <div id="gameSlotsSection" class="panel hidden">
-      <h2>5x4 MEGA FRUITS</h2>
-      <p style="color: #aaa; font-size: 0.9em;">Match 3+ symbols horizontally from left to right to win.</p>
-      
-      <div class="slot-machine-box">
-        <div class="slot-grid" id="slotGrid">
-          <!-- 20 Cells generated by JS -->
+      <!-- WHEEL GAME -->
+      <div id="gameWheelSection" class="panel wheel-container">
+        <h2>✨ NEON CASH WHEEL ✨</h2>
+        <div class="wheel-outer">
+          <div class="wheel-pointer"></div>
+          <canvas id="wheelCanvas" width="320" height="320"></canvas>
         </div>
+        <label>BET AMOUNT:</label>
+        <input type="number" id="wheelBet" value="20" min="5" style="max-width: 200px;">
+        <button class="btn btn-action" onclick="spinWheel()">🔥 SPIN WHEEL 🔥</button>
+        <div id="wheelOutput" class="game-output"></div>
       </div>
-      <div class="bet-control">
-        <label>BET AMOUNT (KSh)</label><br>
-        <input type="number" id="slotBet" value="50" min="5">
+
+      <!-- SLOTS GAME -->
+      <div id="gameSlotsSection" class="panel slot-machine-box hidden">
+        <h2 style="color:var(--gold);">🍒 MEGA FRUIT ENGINE 🍒</h2>
+        <div class="slot-grid" id="slotGrid">
+          <!-- 20 Cells generated via JS -->
+        </div>
+        <div style="margin-top:15px;">
+          <label>BET AMOUNT:</label>
+          <input type="number" id="slotBet" value="50" min="5" style="max-width: 200px;">
+          <button class="btn btn-action" onclick="spinSlots()">⚡ PULL LEVER ⚡</button>
+        </div>
+        <div id="slotOutput" class="game-output"></div>
       </div>
-      <button class="btn btn-action" id="slotSpinBtn" style="max-width:300px;" onclick="spinSlots()">SPIN SLOTS</button>
     </div>
 
-    <div id="gameOutput"></div>
+    <!-- VIEW: WALLET (DEPOSIT & WITHDRAW) -->
+    <div id="viewWallet" class="panel hidden">
+      <h1>💳 YOUR WALLET</h1>
+      <p style="color:var(--cyan);">Manage your REAL money here.</p>
+      
+      <div class="dashboard-item" style="border-color: var(--money-green);">
+        <h3 style="color:var(--money-green); margin-top:0;">DEPOSIT VIA M-PESA</h3>
+        <input type="number" id="depAmount" placeholder="Amount (Min 50)">
+        <button class="btn btn-action" onclick="processDeposit()">SEND STK PUSH</button>
+      </div>
+
+      <div class="dashboard-item" style="border-color: var(--hot-pink);">
+        <h3 style="color:var(--hot-pink); margin-top:0;">WITHDRAW TO M-PESA</h3>
+        <input type="number" id="withAmount" placeholder="Amount (Min 100)">
+        <button class="btn" style="background:var(--hot-pink);" onclick="processWithdraw()">WITHDRAW CASH</button>
+      </div>
+    </div>
+
+    <!-- VIEW: PROFILE & REFERRAL -->
+    <div id="viewProfile" class="panel hidden">
+      <h1>👤 PLAYER PROFILE</h1>
+      
+      <div class="dashboard-item">
+        <h3 style="margin-top:0;">ACCOUNT DETAILS</h3>
+        <p>NAME: <span id="proName" style="color:var(--cyan);">Player</span></p>
+        <p>PHONE: <span id="proPhone" style="color:var(--gold);">07XX</span></p>
+        <p>TOTAL REAL DEPOSITS: <span style="color:var(--money-green);">KSh <span id="proDep">0</span></span></p>
+      </div>
+
+      <div class="dashboard-item" style="border-color: var(--gold); text-align: center;">
+        <h3 style="color:var(--gold); margin-top:0;">INVITE FRIENDS & EARN</h3>
+        <p>Share your special link below:</p>
+        <div class="ref-link">https://eagleworrior.github.io/SpinCashKenya/</div>
+        <button class="btn btn-copy" onclick="copyReferral()">📋 COPY LINK</button>
+      </div>
+      
+      <button class="btn" style="background:#444;" onclick="location.reload()">LOGOUT</button>
+    </div>
+
   </div>
 
   <script>
-    // --- STATE ENGINE ---
-    let balance = 0;
-    let playMode = 'demo'; 
+    // --- WALLETS & MODE SYSTEM ---
+    let balances = { demo: 500, real: 0 };
+    let totalDeposits = 0;
+    let currentMode = 'demo'; 
     let isSpinning = false;
+    let userName = "Player";
+    let userPhone = "07XX";
 
-    // --- AUDIO ENGINE ---
+    // --- AUDIO SYSTEM ---
     const AudioEngine = {
       ctx: null,
       init() { if(!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)(); },
@@ -232,76 +276,98 @@
         } catch(e) {}
       },
       tick() { this.playTone(600, 'sine', 0.05); },
-      win() { this.playTone(880, 'triangle', 0.1); setTimeout(()=>this.playTone(1100, 'triangle', 0.15), 100); },
-      lose() { this.playTone(150, 'sawtooth', 0.4); }
+      win() { this.playTone(880, 'square', 0.1); setTimeout(()=>this.playTone(1100, 'square', 0.2), 100); },
+      lose() { this.playTone(150, 'sawtooth', 0.3); }
     };
 
-    // --- AUTHENTICATION & MODE SETUP ---
-    function handleAuth(mode) {
-      playMode = mode;
+    // --- CORE NAVIGATION ---
+    function login() {
+      userName = document.getElementById('regName').value || "VIP Player";
+      userPhone = document.getElementById('regPhone').value || "07XXXXXXXX";
+      document.getElementById('proName').textContent = userName;
+      document.getElementById('proPhone').textContent = userPhone;
+      
       document.getElementById('authPanel').classList.add('hidden');
       document.getElementById('appPanel').classList.remove('hidden');
-      
-      const modeBadge = document.getElementById('displayMode');
-      if(mode === 'demo') {
-        balance = 500;
-        modeBadge.textContent = "DEMO";
-        modeBadge.className = "mode-badge mode-demo";
-      } else {
-        balance = 0;
-        modeBadge.textContent = "REAL";
-        modeBadge.className = "mode-badge mode-real";
-        document.getElementById('mpesaSection').classList.remove('hidden');
-      }
-      updateBalanceUI();
+      updateUI();
     }
 
-    function updateBalanceUI() { document.getElementById('accountBalance').textContent = balance; }
-
-    function switchGame(target) {
-      document.getElementById('tabWheel').classList.toggle('active', target === 'wheel');
-      document.getElementById('tabSlots').classList.toggle('active', target === 'slots');
-      document.getElementById('gameWheelSection').classList.toggle('hidden', target !== 'wheel');
-      document.getElementById('gameSlotsSection').classList.toggle('hidden', target !== 'slots');
-      document.getElementById('gameOutput').textContent = "";
+    function setMode(mode) {
+      if(isSpinning) return;
+      currentMode = mode;
+      document.getElementById('btnDemo').className = `toggle-btn ${mode === 'demo' ? 'active-demo' : ''}`;
+      document.getElementById('btnReal').className = `toggle-btn ${mode === 'real' ? 'active-real' : ''}`;
+      updateUI();
     }
 
-    // --- M-PESA LOGIC ---
-    function triggerMpesa() {
-      const amt = parseInt(document.getElementById('depositAmount').value);
-      if(amt < 50) return alert("Minimum deposit is KSh 50");
-      const status = document.getElementById('depositStatus');
-      status.textContent = "Waiting for M-Pesa PIN confirmation...";
+    function updateUI() {
+      document.getElementById('accountBalance').textContent = balances[currentMode];
+      // Decorate balance color based on mode
+      document.getElementById('accountBalance').style.color = currentMode === 'demo' ? 'var(--cyan)' : 'var(--money-green)';
+    }
+
+    function switchView(view) {
+      ['Games', 'Wallet', 'Profile'].forEach(v => {
+        document.getElementById(`tab${v}`).classList.remove('active');
+        document.getElementById(`view${v}`).classList.add('hidden');
+      });
+      document.getElementById(`tab${view.charAt(0).toUpperCase() + view.slice(1)}`).classList.add('active');
+      document.getElementById(`view${view.charAt(0).toUpperCase() + view.slice(1)}`).classList.remove('hidden');
+    }
+
+    function toggleGame(game) {
+      document.getElementById('gameWheelSection').classList.toggle('hidden', game !== 'wheel');
+      document.getElementById('gameSlotsSection').classList.toggle('hidden', game !== 'slots');
+    }
+
+    // --- WALLET FUNCTIONS ---
+    function processDeposit() {
+      let amt = parseInt(document.getElementById('depAmount').value);
+      if(!amt || amt < 50) return alert("Minimum deposit is KSh 50!");
+      alert("Please enter M-Pesa PIN on your phone to complete deposit.");
       setTimeout(() => {
-        balance += amt; updateBalanceUI(); AudioEngine.win();
-        status.style.color = "var(--money-green)";
-        status.textContent = `Deposit of KSh ${amt} successful!`;
-      }, 2500);
+        balances.real += amt; totalDeposits += amt;
+        document.getElementById('proDep').textContent = totalDeposits;
+        updateUI(); alert(`Success! KSh ${amt} added to REAL account.`);
+        document.getElementById('depAmount').value = '';
+      }, 2000);
     }
 
-    // --- WHEEL ENGINE ---
+    function processWithdraw() {
+      let amt = parseInt(document.getElementById('withAmount').value);
+      if(!amt || amt < 100) return alert("Minimum withdrawal is KSh 100!");
+      if(balances.real < amt) return alert("Insufficient REAL balance!");
+      balances.real -= amt; updateUI();
+      alert(`Withdrawal of KSh ${amt} initiated. Wait for M-Pesa confirmation message.`);
+      document.getElementById('withAmount').value = '';
+    }
+
+    function copyReferral() {
+      navigator.clipboard.writeText("https://eagleworrior.github.io/SpinCashKenya/");
+      alert("Referral Link Copied! Share it to earn bonuses.");
+    }
+
+    // --- WHEEL ENGINE & ALGORITHM ---
     const wheelSegments = [
-      { label: "×0", color: "#ff4444", mult: 0 }, { label: "×2", color: "#00B365", mult: 2 },
-      { label: "×0", color: "#ff4444", mult: 0 }, { label: "×5", color: "#FFD700", mult: 5 },
-      { label: "×1", color: "#2196F3", mult: 1 }, { label: "×10", color: "#9C27B0", mult: 10 },
-      { label: "×0", color: "#ff4444", mult: 0 }, { label: "×3", color: "#00B365", mult: 3 },
-      { label: "×0", color: "#ff4444", mult: 0 }, { label: "×4", color: "#2196F3", mult: 4 },
-      { label: "×0", color: "#ff4444", mult: 0 }, { label: "×15", color: "#FFD700", mult: 15 }
+      { label: "×0", color: "#ff007f", mult: 0, isWin: false }, { label: "×2", color: "#00fc7b", mult: 2, isWin: true },
+      { label: "×0", color: "#ff007f", mult: 0, isWin: false }, { label: "×5", color: "#FFD700", mult: 5, isWin: true },
+      { label: "×0", color: "#ff007f", mult: 0, isWin: false }, { label: "×10", color: "#00ffff", mult: 10, isWin: true },
+      { label: "×0", color: "#ff007f", mult: 0, isWin: false }, { label: "×3", color: "#00fc7b", mult: 3, isWin: true },
+      { label: "×0", color: "#ff007f", mult: 0, isWin: false }, { label: "×4", color: "#8a2be2", mult: 4, isWin: true }
     ];
     const canvas = document.getElementById('wheelCanvas'); const ctx = canvas.getContext('2d');
     
     function drawWheel(angle = 0) {
-      const radius = 170; const arc = (Math.PI * 2) / wheelSegments.length;
-      ctx.clearRect(0,0,340,340);
+      const radius = 160; const arc = (Math.PI * 2) / wheelSegments.length;
+      ctx.clearRect(0,0,320,320);
       for(let i=0; i<wheelSegments.length; i++) {
         let a = angle + i * arc;
         ctx.beginPath(); ctx.moveTo(radius, radius); ctx.arc(radius, radius, radius, a, a+arc);
         ctx.fillStyle = wheelSegments[i].color; ctx.fill(); 
-        ctx.strokeStyle = "#111"; ctx.lineWidth = 2; ctx.stroke();
-        
+        ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
         ctx.save(); ctx.translate(radius, radius); ctx.rotate(a + arc/2);
-        ctx.textAlign = "right"; ctx.fillStyle = "#fff"; ctx.font = "bold 18px Arial";
-        ctx.fillText(wheelSegments[i].label, radius - 15, 6); ctx.restore();
+        ctx.textAlign = "right"; ctx.fillStyle = "#000"; ctx.font = "bold 20px Impact";
+        ctx.fillText(wheelSegments[i].label, radius - 15, 8); ctx.restore();
       }
     }
     drawWheel();
@@ -309,95 +375,114 @@
     function spinWheel() {
       if(isSpinning) return;
       let bet = parseInt(document.getElementById('wheelBet').value);
-      if(balance < bet) return alert("Insufficient balance! Please deposit.");
-      balance -= bet; updateBalanceUI(); isSpinning = true;
-      document.getElementById('gameOutput').textContent = "";
+      if(balances[currentMode] < bet) return alert(`Insufficient ${currentMode.toUpperCase()} balance!`);
       
-      let targetIdx = Math.floor(Math.random() * wheelSegments.length);
+      balances[currentMode] -= bet; updateUI(); isSpinning = true;
+      let out = document.getElementById('wheelOutput'); out.textContent = "";
+
+      // ALGORITHM: Demo = 75% Win Chance, Real = 15% Win Chance
+      let winChance = currentMode === 'demo' ? 0.75 : 0.15;
+      let forceWin = Math.random() < winChance;
+      
+      // Filter indices based on forced outcome
+      let possibleIndices = wheelSegments.map((seg, idx) => ({seg, idx}))
+                                         .filter(obj => obj.seg.isWin === forceWin)
+                                         .map(obj => obj.idx);
+                                         
+      let targetIdx = possibleIndices[Math.floor(Math.random() * possibleIndices.length)];
+      
       const arc = (Math.PI*2)/wheelSegments.length;
-      // Calculate angle so target stops under the top downward arrow
-      let targetAngle = (Math.PI*1.5) - (targetIdx*arc) - (arc/2) + (Math.PI*2 * 12); 
+      let targetAngle = (Math.PI*1.5) - (targetIdx*arc) - (arc/2) + (Math.PI*2 * 10); 
       
       let start = Date.now();
       function anim() {
-        let p = Math.min((Date.now()-start)/3500, 1);
-        let ease = 1 - Math.pow(1-p, 5); // Fast start, smooth slow down
+        let p = Math.min((Date.now()-start)/3000, 1);
+        let ease = 1 - Math.pow(1-p, 4); 
         drawWheel(targetAngle * ease);
-        if(p < 1) { requestAnimationFrame(anim); if(Math.random()<0.3) AudioEngine.tick(); }
+        if(p < 1) { requestAnimationFrame(anim); if(Math.random()<0.2) AudioEngine.tick(); }
         else {
-          let winMult = wheelSegments[targetIdx].mult; let won = bet * winMult; balance += won; updateBalanceUI();
-          let out = document.getElementById('gameOutput');
-          if(won > 0) { out.className = "text-win"; out.textContent = `WIN! KSh ${won}`; AudioEngine.win(); }
-          else { out.className = "text-lose"; out.textContent = `LOST KSh ${bet}`; AudioEngine.lose(); }
+          let won = bet * wheelSegments[targetIdx].mult; balances[currentMode] += won; updateUI();
+          if(won > 0) { out.style.color = "var(--money-green)"; out.textContent = `WON KSh ${won}!`; AudioEngine.win(); }
+          else { out.style.color = "var(--hot-pink)"; out.textContent = `LOST!`; AudioEngine.lose(); }
           isSpinning = false;
         }
       }
       anim();
     }
 
-    // --- 5x4 SLOT MACHINE ENGINE ---
-    const fruits = ["🍒","🍎","🍇","🍋","🍉","🍊","🍓","🍍","🍌","🥝","💎","🔔"];
+    // --- 5x4 SLOTS ENGINE & ALGORITHM ---
+    const fruits = ["🍒","🍎","🍇","🍋","🍉","🍊","💎","🔔"];
     const gridEl = document.getElementById('slotGrid');
     let cells = [];
 
-    // Initialize 20 empty cells
-    for(let r=0; r<4; r++) {
-      for(let c=0; c<5; c++) {
-        let div = document.createElement('div');
-        div.className = 'slot-cell'; div.textContent = fruits[Math.floor(Math.random()*fruits.length)];
-        gridEl.appendChild(div); cells.push(div);
-      }
+    // Init grid
+    for(let i=0; i<20; i++) {
+      let div = document.createElement('div'); div.className = 'slot-cell'; 
+      div.textContent = fruits[Math.floor(Math.random()*fruits.length)];
+      gridEl.appendChild(div); cells.push(div);
     }
 
     function spinSlots() {
       if(isSpinning) return;
       let bet = parseInt(document.getElementById('slotBet').value);
-      if(balance < bet) return alert("Insufficient balance! Please deposit.");
-      balance -= bet; updateBalanceUI(); isSpinning = true;
+      if(balances[currentMode] < bet) return alert(`Insufficient ${currentMode.toUpperCase()} balance!`);
       
-      let out = document.getElementById('gameOutput');
-      out.textContent = ""; cells.forEach(c => c.classList.remove('win-cell'));
+      balances[currentMode] -= bet; updateUI(); isSpinning = true;
+      let out = document.getElementById('slotOutput'); out.textContent = "";
+      cells.forEach(c => c.classList.remove('win-cell'));
+
+      // ALGORITHM: Demo = 75% Win Chance, Real = 15% Win Chance
+      let winChance = currentMode === 'demo' ? 0.75 : 0.15;
+      let forceWinRow = Math.random() < winChance ? Math.floor(Math.random() * 4) : -1;
+      let winFruit = fruits[Math.floor(Math.random()*fruits.length)];
 
       let spins = 0;
       let interval = setInterval(() => {
         cells.forEach(c => c.textContent = fruits[Math.floor(Math.random()*fruits.length)]);
         AudioEngine.tick(); spins++;
-        if(spins > 25) {
-          clearInterval(interval); evaluateSlots(bet, out);
+        if(spins > 20) {
+          clearInterval(interval);
+          
+          // Apply forced outcome
+          if(forceWinRow >= 0) {
+            let startIdx = forceWinRow * 5;
+            cells[startIdx].textContent = winFruit;
+            cells[startIdx+1].textContent = winFruit;
+            cells[startIdx+2].textContent = winFruit;
+            // 50% chance to make it 4-of-a-kind if forced win
+            if(Math.random() > 0.5) cells[startIdx+3].textContent = winFruit;
+          } else {
+            // Prevent accidental 3-matches on forced losses by randomizing first column strictly differently
+            for(let r=0; r<4; r++) {
+               if(cells[r*5].textContent === cells[r*5+1].textContent && cells[r*5+1].textContent === cells[r*5+2].textContent) {
+                 cells[r*5].textContent = "💥"; // break accidental match
+               }
+            }
+          }
+          evaluateSlots(bet, out);
         }
       }, 50);
     }
 
     function evaluateSlots(bet, out) {
-      let grid = []; let cellIdx = 0;
-      // Read final grid into 2D array
-      for(let r=0; r<4; r++) {
-        let row = [];
-        for(let c=0; c<5; c++) { row.push({ icon: cells[cellIdx].textContent, dom: cells[cellIdx] }); cellIdx++; }
-        grid.push(row);
-      }
-
       let totalWon = 0;
-      
-      // Evaluate Horizontal Paylines (Rows 0 to 3)
       for(let r=0; r<4; r++) {
-        let row = grid[r];
-        if(row[0].icon === row[1].icon && row[1].icon === row[2].icon) {
-          row[0].dom.classList.add('win-cell'); row[1].dom.classList.add('win-cell'); row[2].dom.classList.add('win-cell');
-          let mult = 2; // 3 of a kind multiplier
-          if(row[2].icon === row[3].icon) { mult = 5; row[3].dom.classList.add('win-cell'); } // 4 of a kind
-          if(mult === 5 && row[3].icon === row[4].icon) { mult = 15; row[4].dom.classList.add('win-cell'); } // 5 of a kind
-          
-          if(row[0].icon === '💎') mult *= 5; // Diamond jackpot multiplier
+        let i = r*5;
+        if(cells[i].textContent === cells[i+1].textContent && cells[i+1].textContent === cells[i+2].textContent) {
+          cells[i].classList.add('win-cell'); cells[i+1].classList.add('win-cell'); cells[i+2].classList.add('win-cell');
+          let mult = 2;
+          if(cells[i+2].textContent === cells[i+3].textContent) { mult = 5; cells[i+3].classList.add('win-cell'); }
+          if(mult === 5 && cells[i+3].textContent === cells[i+4].textContent) { mult = 15; cells[i+4].classList.add('win-cell'); }
+          if(cells[i].textContent === '💎') mult *= 3;
           totalWon += (bet * mult);
         }
       }
 
-      balance += totalWon; updateBalanceUI();
+      balances[currentMode] += totalWon; updateUI();
       if(totalWon > 0) {
-        out.className = "text-win"; out.textContent = `SLOTS WIN! KSh ${totalWon}`; AudioEngine.win();
+        out.style.color = "var(--gold)"; out.textContent = `MEGA WIN: KSh ${totalWon}`; AudioEngine.win();
       } else {
-        out.className = "text-lose"; out.textContent = `NO MATCH. SPIN AGAIN.`; AudioEngine.lose();
+        out.style.color = "var(--hot-pink)"; out.textContent = `NO MATCHES!`; AudioEngine.lose();
       }
       isSpinning = false;
     }
